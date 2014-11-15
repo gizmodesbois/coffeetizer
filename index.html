@@ -32,6 +32,7 @@
     <link rel="import" href="partials/coffees-list.html">
     <link rel="import" href="partials/sizes-list.html">
     <link rel="import" href="partials/extras-list.html">
+    <link rel="import" href="partials/calculate-coffee.html">
 
   <body unresolved>
 
@@ -47,9 +48,10 @@
         <coffees-list></coffees-list>
         <beans-list></beans-list>
         <sizes-list></sizes-list>
-        <extras-list></extras-list>
+        <extras-list coeff="{{extraCoeff}}"></extras-list>
       </core-card2>
     </core-scaffold>
+    <calculate-coffee extras-coeff="{{extraCoeff}}"></calculate-coffee>
 
 
 

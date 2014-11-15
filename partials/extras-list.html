@@ -1,8 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-selector/core-selector.html">
 <link rel="import" href="../services/extra-service.html">
 <link rel="import" href="extra-card.html">
 
-<polymer-element name="extras-list">
+<polymer-element name="extras-list" attributes="coeff">
   <template>
     <style>
     :host {
@@ -16,19 +17,34 @@
     </extra-service>
 
     <div layout vertical center>
-      <template repeat="{{extra in extras}}">
-        <extra-card>
-          <img src="{{extra.image}}" width="70" height="70" />
-          <h2>{{extra.name}}</h2>
-        </extra-card>
-      </template>
+      <core-selector selected="0" multi>
+        <template repeat="{{extra in extras}}">
+          <style>
+            .core-selected {
+              background: red;
+            }
+          </style>
+          <core-item on-select="{{test}}">
+            <extra-card>
+              <img src="{{extra.image}}" width="70" height="70" />
+              <h2>{{extra.name}}</h2>
+            </extra-card>
+          </core-item>
+        </template>
+      </core-selector>
     </div>
 
   </template>
 
   <script>
     Polymer({
-
+      ready: function() {
+        this.coeff = 0;
+      },
+      test: function(event, detail, sender) {
+        var extra = sender.templateInstance.model.extra;
+        this.coeff += extra.coefficient;
+      }
     });
   </script>
 

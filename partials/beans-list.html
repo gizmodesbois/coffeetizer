@@ -16,12 +16,21 @@
     </bean-service>
 
     <div layout vertical center>
-      <template repeat="{{bean in beans}}">
-        <bean-card>
-          <img src="{{bean.image}}" width="70" height="70" />
-          <h2>{{bean.name}}</h2>
-        </bean-card>
-      </template>
+      <core-selector selected="0">
+        <template repeat="{{bean in beans}}">
+          <style>
+            .core-selected {
+              background: red;
+            }
+          </style>
+          <core-item>
+            <bean-card>
+              <img src="{{bean.image}}" width="70" height="70" />
+              <h2>{{bean.name}}</h2>
+            </bean-card>
+          </core-item>
+        </template>
+      </core-selector>
     </div>
 
   </template>
