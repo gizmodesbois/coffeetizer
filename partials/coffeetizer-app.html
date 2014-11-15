@@ -1,0 +1,126 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="beans-list.html">
+<link rel="import" href="coffees-list.html">
+<link rel="import" href="extras-list.html">
+<link rel="import" href="sizes-list.html">-->
+<link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../bower_components/core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="../bower_components/core-animated-pages/transitions/scale-up.html">
+<link rel="import" href="../bower_components/core-animated-pages/transitions/tile-cascade.html">
+<link rel="import" href="../bower_components/core-media-query/core-media-query.html">
+
+<polymer-element name="coffeetizer-app" vertical layout>
+<template>
+
+  <link rel="stylesheet" href="coffeetizer-app.css">
+
+  <core-animated-pages selected="{{selected}}" transitions="cross-fade cross-fade-delayed scale-up slide-up slide-up-offscreen slide-down tile-cascade hero-transition" flex auto on-core-animated-pages-transition-end="{{transitionEndAction}}">
+
+    <div name="splash">
+      <span fit class="splash {{ {wide: wide} | tokenList }}" cross-fade></span>
+    </div>
+
+    <div id="beans" name="beans"><span fit class="beans {{ {wide: wide} | tokenList }}" cross-fade><beans-list></beans-list></span></div>
+
+    <div id="coffees" name="coffees"><span fit class="coffees {{ {wide: wide} | tokenList }}" cross-fade><coffees-list></coffees-list></span></div>
+
+    <div id="extras" name="extras"><span fit class="extras {{ {wide: wide} | tokenList }}" hero-id="punch" hero><extras-list coeff="{{extraCoeff}}"></extras-list></span></div>
+
+    <div id="sizes" name="sizes"><span fit class="sizes {{ {wide: wide} | tokenList }}" cross-fade><sizes-list></sizes-list></span></div>
+
+  </core-animated-pages>
+
+  <core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
+
+</template>
+<script>
+(function() {
+  window.setTopekaTransitionSpeed = function(ms) {
+    CoreStyle.g.transitions.duration = ms + 'ms';
+    CoreStyle.g.transitions.scaleDelay = CoreStyle.g.transitions.duration;
+  }
+  setTopekaTransitionSpeed(350);
+  Polymer('coffeetizer-app', {
+
+    selected: 'splash',
+    responsiveWidth: '900px',
+
+    connected: false,
+
+    minSplashTime: 1000,
+
+    /*observe: {
+      'user': 'startup'
+    },*/
+    ready: function() {
+      this.test = window.location.search.indexOf('test') >= 0;
+      this.offline = this.test || window.location.search.indexOf('offline') >= 0;
+      this.readyTime = Date.now();
+      var dummyState = {app: 'coffeetizer'};
+      // set up history state
+      if (!history.state) {
+        history.pushState(dummyState, '');
+      }
+      // "back" button will show categories, unless in profile screen
+      window.onpopstate = function() {
+        this.showBeans();
+        // repopulate history state so we get the popstate event again
+        history.pushState(dummyState, '');
+      }.bind(this);
+      this.startup();
+    },
+    eventDelegates: {
+      'main': 'showBeans'//,
+      //'score-update': 'computeScore'
+    },
+    showBeans: function() {
+      this.selected = 'beans';
+    },
+
+    showCoffees: function() {
+      this.selected = 'coffees';
+    },
+
+    showExtras: function() {
+      this.selected = 'extras';
+    },
+
+    showSizes: function() {
+      this.selected = 'sizes';
+    },
+
+    startup: function() {
+      var elapsed = Date.now() - this.readyTime;
+      var t = this.minSplashTime - elapsed;
+      this.async('completeStartup', null, t > 0 ? t : 0);
+    },
+
+    completeStartup: function() {
+      //this.loadScores();
+      this.selected = 'beans';
+    },
+    transitionEndAction: function() {
+      //this.disableLeaderboard = (this.selected !== 'leaderboard');
+    }
+  });
+})();
+
+    addEventListener('polymer-ready', function() {
+
+      var s = document.querySelector('coffeetizer-app');
+      s.ready();
+      s.showBeans();
+      //this.async('showExtras', null, 10);
+
+    });
+</script>
+</polymer-element>

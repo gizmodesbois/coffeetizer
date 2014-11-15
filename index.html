@@ -33,23 +33,22 @@
     <link rel="import" href="partials/sizes-list.html">
     <link rel="import" href="partials/extras-list.html">
     <link rel="import" href="partials/calculate-coffee.html">
+    <link rel="import" href="partials/strength-button.html">
+    <link rel="import" href="partials/coffeetizer-app.html">
+  </head>
 
   <body unresolved>
 
-    <core-scaffold id="core_scaffold">
-      <core-header-panel mode="seamed" id="core_header_panel" navigation flex>
+    <core-scaffold id="core_scaffold" rightDrawer>
+      <core-header-panel id="core_header_panel" mode="seamed" navigation flex class="tall">
         <core-toolbar id="core_toolbar"></core-toolbar>
         <core-menu selected="Estimate" valueattr="label" selectedindex="1" id="menu" theme="core-light-theme">
-          <core-item id="menu_item1" icon="assignment-ind" label="Estimate" horizontal center layout></core-item>
+          <strength-button id="menu_item1" horizontal center layout></strength-button>
         </core-menu>
       </core-header-panel>
       <div id="div" tool>Coffeetizer</div>
-      <core-card2 id="card" layout vertical>
-        <coffees-list></coffees-list>
-        <beans-list></beans-list>
-        <sizes-list></sizes-list>
-        <extras-list coeff="{{extraCoeff}}"></extras-list>
-      </core-card2>
+      <coffeetizer-app id="app" fit touch-action="auto">
+      </coffeetizer-app>
     </core-scaffold>
     <calculate-coffee extras-coeff="{{extraCoeff}}"></calculate-coffee>
 
