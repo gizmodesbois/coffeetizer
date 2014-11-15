@@ -1,0 +1,35 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../services/bean-service.html">
+<link rel="import" href="bean-card.html">
+
+<polymer-element name="beans-list">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    </style>
+
+    <!-- add markup here -->
+    <bean-service id="service" beans="{{beans}}">
+    </bean-service>
+
+    <div layout vertical center>
+      <template repeat="{{bean in beans}}">
+        <bean-card>
+          <img src="{{bean.image}}" width="70" height="70" />
+          <h2>{{bean.name}}</h2>
+        </bean-card>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+    });
+  </script>
+
+</polymer-element>

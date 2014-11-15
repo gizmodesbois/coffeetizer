@@ -1,0 +1,36 @@
+[{
+  "id":1,
+  "name" : "Expresso",
+  "price" : 2.00,
+  "image" : ""
+},{
+  "id":2,
+  "name" : "Cappuccino",
+  "price" : 2.50,
+  "image" : ""
+},{
+  "id":3,
+  "name" : "Americano",
+  "price" : 2.50,
+  "image" : ""
+},{
+  "id":4,
+  "name" : "Macchiato",
+  "price" : 3.00,
+  "image" : ""
+},{
+  "id":5,
+  "name" : "Latte",
+  "price" : 3.50,
+  "image" : ""
+},{
+  "id":6,
+  "name" : "Frappuccino",
+  "price" : 4.00,
+  "image" : ""
+},{
+  "id":7,
+  "name" : "Polycaffe",
+  "price" : 5.00,
+  "image" : ""
+}]

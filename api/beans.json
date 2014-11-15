@@ -1,0 +1,36 @@
+[{
+  "id":1,
+  "name" : "Regular",
+  "coefficient" : 1.00,
+  "image" : ""
+},{
+  "id":2,
+  "name" : "Blue Moutain",
+  "coefficient" : 1.20,
+  "image" : ""
+},{
+  "id":3,
+  "name" : "Bourbon pointu",
+  "coefficient" : 1.50,
+  "image" : ""
+},{
+  "id":4,
+  "name" : "Cattura",
+  "coefficient" : 1.30,
+  "image" : ""
+},{
+  "id":5,
+  "name" : "Harrar",
+  "coefficient" : 1.20,
+  "image" : ""
+},{
+  "id":6,
+  "name" : "Java",
+  "coefficient" : 1.60,
+  "image" : ""
+},{
+  "id":7,
+  "name" : "Moka",
+  "coefficient" : 1.10,
+  "image" : ""
+}]

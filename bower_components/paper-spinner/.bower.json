@@ -1,0 +1,18 @@
+{
+  "name": "paper-spinner",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "webcomponentsjs": "Polymer/webcomponentsjs#master"
+  },
+  "homepage": "https://github.com/Polymer/paper-spinner",
+  "_release": "23a5901c00",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "23a5901c00b5a1b110d31f528490bd99746a2a83"
+  },
+  "_source": "git://github.com/Polymer/paper-spinner.git",
+  "_target": "master",
+  "_originalSource": "Polymer/paper-spinner"
+}

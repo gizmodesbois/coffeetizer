@@ -1,0 +1,46 @@
+[{
+  "id":1,
+  "name" : "Chantilly",
+  "coefficient" : 0.25,
+  "image" : ""
+},{
+  "id":2,
+  "name" : "Chokotoff",
+  "coefficient" : 0.50,
+  "image" : ""
+},{
+  "id":3,
+  "name" : "Melted Nutella",
+  "coefficient" : 1.00,
+  "image" : ""
+},{
+  "id":4,
+  "name" : "Sugar",
+  "coefficient" : 0.20,
+  "image" : ""
+},{
+  "id":5,
+  "name" : "Milk",
+  "coefficient" : 0.00,
+  "image" : ""
+},{
+  "id":6,
+  "name" : "Coffee cup",
+  "coefficient" : 2.20,
+  "image" : ""
+},{
+  "id":7,
+  "name" : "Rainbow sparkles",
+  "coefficient" : 1.00,
+  "image" : ""
+},{
+  "id":8,
+  "name" : "Marshmallow",
+  "coefficient" : 1.00,
+  "image" : ""
+},{
+  "id":9,
+  "name" : "Unicorn",
+  "coefficient" : 10.00,
+  "image" : ""
+}]
