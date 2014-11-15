@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/core-animated-pages/transitions/tile-cascade.html">
 <link rel="import" href="../bower_components/core-media-query/core-media-query.html">
 
-<polymer-element name="coffeetizer-app" attributes="user categories" vertical layout>
+<polymer-element name="coffeetizer-app" vertical layout>
 <template>
 
   <link rel="stylesheet" href="coffeetizer-app.css">
@@ -29,13 +29,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span fit class="splash {{ {wide: wide} | tokenList }}" cross-fade></span>
     </div>
 
-    <div id="beans">Beans</div>
+    <div id="beans" name="beans"><span fit class="beans {{ {wide: wide} | tokenList }}" cross-fade>Beans</span></div>
 
-    <div id="coffees">Coffees</div>
+    <div id="coffees" name="coffees"><span fit class="coffees {{ {wide: wide} | tokenList }}" cross-fade>Coffees</span></div>
 
-    <div id="extras">Extras</div>
+    <div id="extras" name="extras"><span fit class="extras {{ {wide: wide} | tokenList }}" hero-id="punch" hero>Extras</span></div>
 
-    <div id="sizes">Sizes</div>
+    <div id="sizes" name="sizes"><span fit class="sizes {{ {wide: wide} | tokenList }}" cross-fade>Sizes</span></div>
 
   </core-animated-pages>
 
@@ -58,9 +58,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     minSplashTime: 1000,
 
-    observe: {
+    /*observe: {
       'user': 'startup'
-    },
+    },*/
     ready: function() {
       this.test = window.location.search.indexOf('test') >= 0;
       this.offline = this.test || window.location.search.indexOf('offline') >= 0;
@@ -72,19 +72,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       // "back" button will show categories, unless in profile screen
       window.onpopstate = function() {
-        if (this.selected !== 'profile') {
-          this.showCategories();
-        }
+        this.showBeans();
         // repopulate history state so we get the popstate event again
         history.pushState(dummyState, '');
       }.bind(this);
-      if (!this.user) {
-        this.startup();
-      }
+      this.startup();
     },
     eventDelegates: {
-      'main': 'showCategories',
-      'score-update': 'computeScore'
+      'main': 'showBeans'//,
+      //'score-update': 'computeScore'
     },
     showBeans: function() {
       this.selected = 'beans';
@@ -98,62 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.selected = 'extras';
     },
 
-    showzies: function() {
+    showSizes: function() {
       this.selected = 'sizes';
-    },
-
-    categorySelect: function() {
-      if (this.category) {
-        var n = this.category.name;
-        if (n === 'leaderboard') {
-          this.showLeaderboard();
-        } else if (n === 'profile') {
-          this.showProfile();
-        } else {
-          this.showCategory();
-        }
-      }
-    },
-    loadScores: function() {
-      var pts = 0;
-      try {
-        this.allScores = JSON.parse(localStorage.getItem('topeka-scores'));
-        if (!this.allScores) {
-          this.resetScores();
-        } else {
-          for (var n in this.allScores) {
-            pts += this.sumPts(this.allScores[n]);
-          }
-          this.user.score = pts;
-        }
-      } catch (e) {
-        this.resetScores();
-      }
-    },
-    computeScore: function() {
-      if (this.user) {
-        var pts = 0;
-        for (var n in this.allScores) {
-          pts += this.sumPts(this.allScores[n]);
-        }
-        this.user.score = pts;
-        localStorage.setItem('topeka-scores', JSON.stringify(this.allScores));
-      }
-    },
-    resetScores: function() {
-      localStorage.removeItem('topeka-scores');
-      if (this.user) {
-        this.user.score = 0;
-      }
-      this.allScores = {};
-    },
-
-    sumPts: function(s) {
-      var pts = 0;
-      for (var i = 0; i < s.length; i++) {
-        pts += (s[i] || 0);
-      }
-      return pts;
     },
 
     startup: function() {
@@ -163,16 +105,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     completeStartup: function() {
-      this.loadScores();
+      //this.loadScores();
       this.selected = 'beans';
     },
     transitionEndAction: function() {
       //this.disableLeaderboard = (this.selected !== 'leaderboard');
     }
-
-
-
-
   });
 })();
 
@@ -181,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var s = document.querySelector('coffeetizer-app');
       s.ready();
       s.showBeans();
+      //this.async('showExtras', null, 10);
 
     });
 </script>
