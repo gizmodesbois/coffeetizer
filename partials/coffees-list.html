@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-selector/core-selector.html">
 <link rel="import" href="../services/coffee-service.html">
 <link rel="import" href="coffee-card.html">
 
@@ -16,12 +17,21 @@
     </coffee-service>
 
     <div layout vertical center>
-      <template repeat="{{coffee in coffees}}">
-        <coffee-card>
-          <img src="{{coffee.image}}" width="70" height="70" />
-          <h2>{{coffee.name}}</h2>
-        </coffee-card>
-      </template>
+      <core-selector selected="0">
+        <template repeat="{{coffee in coffees}}">
+          <style>
+            .core-selected {
+              background: red;
+            }
+          </style>
+          <core-item>
+            <coffee-card>
+              <img src="{{coffee.image}}" width="70" height="70" />
+              <h2>{{coffee.name}}</h2>
+            </coffee-card>
+          </core-item>
+        </template>
+      </core-selector>
     </div>
 
   </template>
