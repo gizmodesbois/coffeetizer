@@ -1,0 +1,35 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../services/coffee-service.html">
+<link rel="import" href="coffee-card.html">
+
+<polymer-element name="coffees-list">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    </style>
+
+    <!-- add markup here -->
+    <coffee-service id="service" coffees="{{coffees}}">
+    </coffee-service>
+
+    <div layout vertical center>
+      <template repeat="{{coffee in coffees}}">
+        <coffee-card>
+          <img src="{{coffee.image}}" width="70" height="70" />
+          <h2>{{coffee.name}}</h2>
+        </coffee-card>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+    });
+  </script>
+
+</polymer-element>

@@ -2,8 +2,7 @@
   "name": "Coffeetizer",
   "description": "",
   "homepage": "",
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "",
   "private": true,
   "dependencies": {
@@ -11,6 +10,6 @@
     "platform": "Polymer/platform#master",
     "paper-elements": "Polymer/paper-elements#master",
     "core-ajax": "Polymer/core-ajax#~0.5.1",
-    "core-elements": "Polymer/core-elements#master"
+    "core-elements": "Polymer/core-elements#~0.5.1"
   }
 }

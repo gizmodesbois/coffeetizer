@@ -1,0 +1,28 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="size-service" attributes="sizes">
+  <template>
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+    <core-ajax id="ajax"
+      auto
+      url="../api/sizes.json"
+      on-core-response="{{sizeLoaded}}"
+      handleAs="json">
+    </core-ajax>
+  </template>
+  <script>
+  Polymer('size-service', {
+    created: function() {
+      this.sizes = [];
+    },
+    sizeLoaded: function() {
+      this.sizes = this.$.ajax.response.slice(0);
+    }
+  });
+  </script>
+</polymer-element>

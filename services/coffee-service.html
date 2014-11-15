@@ -1,0 +1,28 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="coffee-service" attributes="coffees">
+  <template>
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+    <core-ajax id="ajax"
+      auto
+      url="../api/types.json"
+      on-core-response="{{coffeesLoaded}}"
+      handleAs="json">
+    </core-ajax>
+  </template>
+  <script>
+  Polymer('coffee-service', {
+    created: function() {
+      this.coffees = [];
+    },
+    coffeesLoaded: function() {
+      this.coffees = this.$.ajax.response.slice(0);
+    }
+  });
+  </script>
+</polymer-element>

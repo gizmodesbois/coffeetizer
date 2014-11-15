@@ -1,0 +1,35 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../services/extra-service.html">
+<link rel="import" href="extra-card.html">
+
+<polymer-element name="extras-list">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    </style>
+
+    <!-- add markup here -->
+    <extra-service id="service" extras="{{extras}}">
+    </extra-service>
+
+    <div layout vertical center>
+      <template repeat="{{extra in extras}}">
+        <extra-card>
+          <img src="{{extra.image}}" width="70" height="70" />
+          <h2>{{extra.name}}</h2>
+        </extra-card>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+    });
+  </script>
+
+</polymer-element>

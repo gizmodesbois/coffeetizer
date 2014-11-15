@@ -1,0 +1,28 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="extra-service" attributes="extras">
+  <template>
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+    <core-ajax id="ajax"
+      auto
+      url="../api/extras.json"
+      on-core-response="{{extrasLoaded}}"
+      handleAs="json">
+    </core-ajax>
+  </template>
+  <script>
+  Polymer('extra-service', {
+    created: function() {
+      this.extras = [];
+    },
+    extrasLoaded: function() {
+      this.extras = this.$.ajax.response.slice(0);
+    }
+  });
+  </script>
+</polymer-element>
